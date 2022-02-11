@@ -21,6 +21,7 @@ class StreamCreate extends React.Component {
       </div>
     );
   };
+  // todo: Calling createStream action creator
   onSubmit = (formValues) => {
     this.props.createStream(formValues);
   };
