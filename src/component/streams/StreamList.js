@@ -31,7 +31,7 @@ class StreamList extends React.Component {
     ) {
       return (
         <div className="col-2 d-flex align-items-center justify-content-center">
-          <Link className="btn btn-primary" to={`/streams/edit/${id}`}>Edit</Link>
+          <Link className="btn btn-primary me-2" to={`/streams/edit/${id}`}>Edit</Link>
           <Link className="btn btn-danger" to={`/streams/delete/${id}`}>Delete</Link>
         </div>
       );

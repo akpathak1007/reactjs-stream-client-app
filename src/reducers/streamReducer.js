@@ -24,7 +24,8 @@ export default (state = {}, action) => {
     }
     case DELETE_STREAM: {
       let newState = { ...state };
-      delete newState[action.payload.id];
+      delete newState[action.payload];
+      return newState;
     }
     default: {
       return state;
