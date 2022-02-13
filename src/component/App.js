@@ -15,11 +15,11 @@ const App = () => {
       <div>
         <Nav />
         <Switch>
-          <Route path="/" exact component={StreamList} />
-          <Route path="/streams/new" exact component={StreamCreate} />
-          <Route path="/streams/edit/:id" exact component={StreamEdit} />
-          <Route path="/streams/delete/:id" exact component={StreamDelete} />
-          <Route path="/streams/:id" exact component={StreamShow} />
+          <Route path="/" exact ><StreamList/></Route>
+          <Route path="/streams/new" exact ><StreamCreate/>/</Route>
+          <Route path="/streams/edit/:id" exact ><StreamEdit/></Route>
+          <Route path="/streams/delete/:id" exact ><StreamDelete/></Route>
+          <Route path="/streams/:id" exact ><StreamShow/></Route>
         </Switch>
       </div>
     </Router>
