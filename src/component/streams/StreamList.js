@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchStreams } from "../../actions";
+import './StreamList.css';
+import history from "../../history";
 
 class StreamList extends React.Component {
   componentDidMount() {
@@ -24,15 +26,18 @@ class StreamList extends React.Component {
     }
   };
   /* Edit and delete button for logged in user*/
-  renderButtons = (userId, id ) => {
+  renderButtons = (userId, id) => {
+    const stopEventBubbling = (e) => {
+      e.stopPropagation();
+    }
     if (
       this.props.currentUserId !== null &&
       this.props.currentUserId === userId
     ) {
       return (
         <div className="col-2 d-flex align-items-center justify-content-center">
-          <Link className="btn btn-primary me-2" to={`/streams/edit/${id}`}>Edit</Link>
-          <Link className="btn btn-danger" to={`/streams/delete/${id}`}>Delete</Link>
+          <Link onClick={stopEventBubbling} className="btn btn-primary me-2" to={`/streams/edit/${id}`}>Edit</Link>
+          <Link onClick={stopEventBubbling} className="btn btn-danger" to={`/streams/delete/${id}`}>Delete</Link>
         </div>
       );
     } else {
@@ -41,8 +46,9 @@ class StreamList extends React.Component {
   };
   renderList = () => {
     const items = this.props.streams.map((stream) => {
+      const { id, userId } = stream;
       return (
-        <div key={stream.id} className="list-group-item">
+        <li onClick={()=>history.push(`/streams/${id}`)}  key={id} className="list-group-item hover">
           <div className="row">
             <div className="col-1">
               <i className="bi bi-camera-fill fs-1"></i>
@@ -52,10 +58,10 @@ class StreamList extends React.Component {
                 <h6>{stream.title}</h6>
                 <p>{stream.description}</p>
               </div>
-              {this.renderButtons(stream.userId, stream.id)}
+              {this.renderButtons(userId, id)}
             </div>
           </div>
-        </div>
+        </li>
       );
     });
     return <ul className="list-group list-group-flush overflow-scroll"> {items}</ul>;
